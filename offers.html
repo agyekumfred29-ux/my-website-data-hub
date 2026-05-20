@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Select Offer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h2 id="networkTitle"></h2>
+<p>Select Your Bundle</p>
+</header>
+
+<div class="container" id="offers"></div>
+
+<script>
+
+const urlParams = new URLSearchParams(window.location.search);
+const network = urlParams.get('network');
+
+document.getElementById("networkTitle").innerText = network + " Data Offers";
+
+const dataOffers = {
+MTN: ["1GB - GHS 5","2GB - GHS 9.5p","5GB - GHS 24","10GB - GHS 45","20GB - GHS 90"],
+Telecel: ["1GB - GHS 4.5p","2GB - GHS 9","4GB - GHS 18","8GB - GHS 35","16GB - GHS 70"],
+AirtelTigo: ["1GB - GHS 3.5","2GB - GHS 7","3GB - GHS 10","5GB - GHS 15","10GB - GHS 28"]
+};
+
+const offersDiv = document.getElementById("offers");
+
+dataOffers[network].forEach(offer => {
+
+offersDiv.innerHTML += `
+<div class="card">
+<h3>${offer}</h3>
+<button onclick="buyBundle('${network} ${offer}')">Buy Now</button>
+</div>
+`;
+
+});
+
+function buyBundle(bundle){
+window.location.href = "payment.html?bundle=" + encodeURIComponent(bundle);
+}
+
+</script>
+<footer>@2024 Data Hub. All rights reserved.</footer>
+</body>
+</html>

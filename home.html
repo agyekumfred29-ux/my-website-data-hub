@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Data Plug</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>DATA PLUG</h1>
+<p>Select Network</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>MTN</h2>
+<button onclick="goToOffers('MTN')">Buy Data</button>
+</div>
+
+<div class="card">
+<h2>Telecel</h2>
+<button onclick="goToOffers('Telecel')">Buy Data</button>
+</div>
+
+<div class="card">
+<h2>AirtelTigo</h2>
+<button onclick="goToOffers('AirtelTigo')">Buy Data</button>
+</div>
+
+</div>
+
+<script>
+function goToOffers(network){
+window.location.href = "offers.html?network=" + network;
+}
+</script>
+<footer>@2024 Data Hub. All rights reserved.</footer>
+</body>
+</html>

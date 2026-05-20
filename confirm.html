@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Confirm Order</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h2>Confirm Your Order</h2>
+</header>
+
+<div class="container">
+<div class="card">
+
+<h3 id="bundle"></h3>
+<p id="number"></p>
+<p id="network"></p>
+
+<button onclick="confirmOrder()">Confirm & Pay</button>
+
+</div>
+</div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+
+const bundle = params.get("bundle");
+const number = params.get("number");
+const network = params.get("network");
+
+document.getElementById("bundle").innerText = bundle;
+document.getElementById("number").innerText = "Send To: " + number;
+document.getElementById("network").innerText = "Network: " + network;
+
+function confirmOrder(){
+
+let order = {
+bundle: bundle,
+number: number,
+network: network,
+status: "Pending",
+date: new Date().toLocaleString()
+};
+
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+orders.push(order);
+
+localStorage.setItem("orders", JSON.stringify(orders));
+
+alert("Order placed successfully");
+
+window.location.href = "success.html";
+
+}
+
+</script>
+<footer>@2024 Data Hub. All rights reserved.</footer>
+</body>
+</html>

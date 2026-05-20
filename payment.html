@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Buy Data</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h2>Buy Data Bundle</h2>
+<p>Enter number to receive data</p>
+</header>
+
+<div class="container">
+<div class="card">
+
+<h3 id="bundle"></h3>
+
+<input type="text" id="recipient" placeholder="Enter number to receive data on" maxlength="10">
+
+<button onclick="proceedToPayment()">Continue</button>
+
+</div>
+</div>
+
+<!-- MoMo Payment Section -->
+<div class="container" id="momoSection" style="display:none;">
+<div class="card">
+<h3>MoMo Payment</h3>
+<p>Send <span id="amount"></span> to receive your data bundle</p>
+<p>Enter your MoMo PIN to receive <span id="dataBundle"></span></p>
+
+<input type="password" id="momoPin" placeholder="Enter MoMo PIN" maxlength="4">
+
+<button onclick="confirmPayment()">Confirm Payment</button>
+</div>
+</div>
+
+<script>
+
+const urlParams = new URLSearchParams(window.location.search);
+const bundle = urlParams.get('bundle');
+
+document.getElementById("bundle").innerText = bundle;
+
+// Extract amount from bundle string (e.g., "MTN 1GB - GHS 5" -> "GHS 5")
+const amountMatch = bundle.match(/GHS\s*[\d.]+/);
+const amount = amountMatch ? amountMatch[0] : "GHS 0";
+
+document.getElementById("amount").innerText = amount;
+document.getElementById("dataBundle").innerText = bundle;
+
+function proceedToPayment(){
+
+let number = document.getElementById("recipient").value;
+
+if(number === ""){
+alert("Please enter phone number");
+return;
+}
+
+if(number.length !== 10){
+alert("Please enter a valid 10-digit phone number");
+return;
+}
+
+// Hide input section and show MoMo payment section
+document.querySelector(".container").style.display = "none";
+document.getElementById("momoSection").style.display = "block";
+
+}
+
+function confirmPayment(){
+
+let pin = document.getElementById("momoPin").value;
+
+if(pin === ""){
+alert("Please enter your MoMo PIN");
+return;
+}
+
+if(pin.length !== 4){
+alert("Please enter a 4-digit PIN");
+return;
+}
+
+// Simulate payment processing
+alert("Payment successful! Your data bundle will be sent to " + document.getElementById("recipient").value);
+
+// Redirect to home
+window.location.href = "home.html";
+
+}
+
+</script>
+
+</body>
+</html>

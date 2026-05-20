@@ -1,0 +1,37 @@
+body{
+font-family:Arial;
+margin:0;
+background:#f4f6f9;
+}
+
+header{
+background:#007bff;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.card{
+background:white;
+width:250px;
+margin:15px;
+padding:20px;
+border-radius:10px;
+text-align:center;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+button{
+background:#007bff;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:5px;
+cursor:pointer;
+}
